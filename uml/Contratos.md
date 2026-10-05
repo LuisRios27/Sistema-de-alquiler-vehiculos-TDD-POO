@@ -64,7 +64,7 @@
 *Pre:*
 - dias > 0 (CantidadDiasInvalidoException)
 *Post:*
-- Crea un nuevo alquiler con un vehículo y los dias asignados 
+- Crea un nuevo alquiler con un vehículo y el alquiler de los dias asignados 
 
 **Mensaje:** precio() 
 *Pre:*
