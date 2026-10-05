@@ -26,4 +26,14 @@ public class ClienteTest extends RuntimeException {
         // Act & Assert
         assertEquals(false, unCliente.tieneNumero(otroNumero));
     }
+
+    @Test
+    @DisplayName("Intentar crear un Cliente con numero de cliente = 0 lanza excepcion NumeroDeClienteInvalidoException.")
+    public void test03SeIntentaCrearClienteConNumeroDeClienteIgualACeroSeLanzaNumeroDeClienteInvalidoException() {
+        // Arrange
+        int numeroDeCliente = 0;
+        assertThrows(NumeroDeClienteInvalidoException.class, () -> {
+            new Cliente(numeroDeCliente);
+        });
+    }
 }
