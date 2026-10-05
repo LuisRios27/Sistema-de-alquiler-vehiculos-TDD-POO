@@ -62,7 +62,7 @@
 
 **Mensaje (Constructor):** Alquiler(Vehiculo vehiculo, int dias)
 *Pre:*
-- dias > 0 (CantidadDiasInvalidoException)
+- dias > 0 (CantidadDiasInvalidaException)
 *Post:*
 - Crea un nuevo alquiler con un vehículo y el alquiler de los dias asignados 
 
