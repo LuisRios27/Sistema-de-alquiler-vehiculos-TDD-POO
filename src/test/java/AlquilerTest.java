@@ -40,4 +40,30 @@ public class AlquilerTest {
         // Act & Assert
         assertEquals(1265.0, unAlquiler.precio());
     }
+
+    @Test
+    @DisplayName("Crear un alquiler de un Microbus por 0 dias, lanza excepcion CantidadDiasInvalidaException.")
+    public void test04AlquilerPor0DiasDeUnVehiculoLanzaCantidadDiasInvalidaException() {
+        // Arrange
+        Vehiculo unVehiculo = new Microbus("LMRH-2827");
+        int dias = 0;
+
+        // Act & Assert
+        assertThrows(CantidadDiasInvalidaException.class, () -> {
+            new Alquiler(unVehiculo, dias);
+        });
+    }
+
+    @Test
+    @DisplayName("Crear un alquiler de un Microbus por dias menores a cero, se lanza excepcion CantidadDiasInvalidaException.")
+    public void test05AlquilerPorDiasMenoresACeroDeUnVehiculoLanzaCantidadDiasInvalidaException() {
+        // Arrange
+        Vehiculo unVehiculo = new Microbus("LMRH-2827");
+        int dias = -2;
+
+        // Act & Assert
+        assertThrows(CantidadDiasInvalidaException.class, () -> {
+            new Alquiler(unVehiculo, dias);
+        });
+    }
 }
