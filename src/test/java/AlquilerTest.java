@@ -27,4 +27,17 @@ public class AlquilerTest {
         // Act & Assert
         assertEquals(5000.0, unAlquiler.precio());
     }
+
+    @Test
+    @DisplayName("El Alquiler por 1 dia de un Coche premium de 4 plazas blindado tiene un precio de 1265.0")
+    public void test03PrecioDeAlquilerPor1DiaDeUnCochePremium4plazasBlindadoEs1265() {
+        // Arrange
+        Categoria categoriaPremium = new Premium();
+        Vehiculo unVehiculo = new Coche("TLCP-2809", 4, categoriaPremium, true);
+        int dias = 1;
+        Alquiler unAlquiler = new Alquiler(unVehiculo, dias);
+
+        // Act & Assert
+        assertEquals(1265.0, unAlquiler.precio());
+    }
 }
