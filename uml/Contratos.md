@@ -43,7 +43,7 @@
 *Pre:*
 - numero > 0 (NumeroDeClienteInvalidoException)
 *Post:*
-- El cliente se crea con 0 alquileres, o sea precio total de alquileres igual a 0.
+- El cliente se crea con su numero de cliente ingresado por parametro.
 
 **Mensaje:** alquila(Vehiculo unVehiculo, int dias)
 *Pre:*
