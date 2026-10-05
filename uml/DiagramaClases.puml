@@ -1,0 +1,40 @@
+@startuml
+class Agencia {
+}
+class Cliente {
+}
+class Alquiler {
+}
+class Vehiculo {
+}
+class Camion {
+}
+class Furgoneta {
+}
+class Microbus {
+}
+class Coche {
+}
+interface Categoria <<protocol>> {
+}
+class Clasico {
+}
+class Premium {
+}
+
+Agencia "1" --> "*" Cliente
+Agencia "1" --> "*" Vehiculo
+
+Cliente "1" --> "*" Alquiler
+Alquiler "*" --> "1" Vehiculo
+
+Coche --|> Vehiculo
+Microbus --|> Vehiculo
+Furgoneta --|> Vehiculo
+Camion --|> Vehiculo 
+
+Coche "*" --> "1" Categoria
+Clasico ..|> Categoria
+Premium ..|> Categoria
+
+@enduml
