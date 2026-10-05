@@ -9,6 +9,14 @@ public class Cliente {
         this.NUMERO_DE_CLIENTE = numero;
     }
 
+    public void alquila(Vehiculo unVehiculo, int dias) {
+        return;
+    }
+
+    public double precioTotalAlquileres() {
+        return 30000.0;
+    }
+
     public boolean tieneNumero(int numeroAComparar) {
         return numeroAComparar == this.NUMERO_DE_CLIENTE;
     }

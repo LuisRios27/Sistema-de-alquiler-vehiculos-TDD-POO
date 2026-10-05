@@ -51,7 +51,7 @@
 *Post:*
 - agrega un alquiler al cliente
 
-**Mensaje:** precioTotal() 
+**Mensaje:** precioTotalAlquileres() 
 *Pre:*
 - ...
 *Post:*

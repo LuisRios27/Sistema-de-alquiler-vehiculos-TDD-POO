@@ -32,8 +32,23 @@ public class ClienteTest extends RuntimeException {
     public void test03SeIntentaCrearClienteConNumeroDeClienteIgualACeroSeLanzaNumeroDeClienteInvalidoException() {
         // Arrange
         int numeroDeCliente = 0;
+
+        // Act & Assert
         assertThrows(NumeroDeClienteInvalidoException.class, () -> {
             new Cliente(numeroDeCliente);
         });
+    }
+
+    @Test
+    @DisplayName("Un cliente alquila un camion por 3 dias el precio total de sus alquileres es 30000.0")
+    public void test04ClienteAlquilaCamionPor3DiasYPrecioDeAlquilerTotalDeAlquileresDeCLienteEs30000() {
+        // Arrange
+        int dias = 3;
+        Vehiculo unVehiculo = new Camion("LMRH-2827");
+        Cliente unCliente = new Cliente(1);
+
+        // Act & Assert
+        unCliente.alquila(unVehiculo, dias);
+        assertEquals(30000.0, unCliente.precioTotalAlquileres());
     }
 }
