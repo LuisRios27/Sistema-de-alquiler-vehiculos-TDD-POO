@@ -14,4 +14,16 @@ public class ClienteTest extends RuntimeException {
         // Act & Assert
         assertEquals(true, unCliente.tieneNumero(numeroDeCliente));
     }
+
+    @Test
+    @DisplayName("Si un Cliente se crea con numero 5 asignado, tieneMismo numero devuelve false si se compara con 6.")
+    public void test02SiClienteNoTieneMismoNumeroConElQueFueCreadoTieneMismoNumeroDevuelveFalse() {
+        // Arrange
+        int numeroDeCliente = 5;
+        int otroNumero = 6;
+        Cliente unCliente = new Cliente(numeroDeCliente);
+
+        // Act & Assert
+        assertEquals(false, unCliente.tieneNumero(otroNumero));
+    }
 }

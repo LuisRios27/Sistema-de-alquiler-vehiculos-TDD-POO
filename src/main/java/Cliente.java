@@ -7,6 +7,6 @@ public class Cliente {
     }
 
     public boolean tieneNumero(int numeroAComparar) {
-        return true;
+        return numeroAComparar == this.NUMERO_DE_CLIENTE;
     }
 }
