@@ -1,7 +1,6 @@
 public class Coche extends Vehiculo {
     
     private static final double FACTOR_BLINDAJE = 1.15;
-    private static final double COSTO_BASE = 500.0; 
     private boolean estaBlindado;
     private Categoria categoria;
     private int plazas;

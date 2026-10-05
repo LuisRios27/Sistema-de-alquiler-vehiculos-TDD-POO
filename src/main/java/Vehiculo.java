@@ -1,6 +1,7 @@
 public abstract class Vehiculo {
     
     private final String patente;
+    protected static final double COSTO_BASE = 500.0; 
     
     public Vehiculo(String patente) {
         this.patente = patente;

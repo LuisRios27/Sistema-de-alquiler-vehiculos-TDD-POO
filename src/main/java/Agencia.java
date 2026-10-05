@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agencia {
-    
     private List<Vehiculo> vehiculos = new ArrayList<>();
 
     private int cantidadClientes;
