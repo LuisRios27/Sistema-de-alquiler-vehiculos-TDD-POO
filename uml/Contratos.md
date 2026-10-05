@@ -43,7 +43,7 @@
 *Pre:*
 - numero > 0 (NumeroDeClienteInvalidoException)
 *Post:*
-- El cliente se crea con 0 alquileres.
+- El cliente se crea con 0 alquileres, o sea precio total de alquileres igual a 0.
 
 **Mensaje:** alquila(Vehiculo unVehiculo, int dias)
 *Pre:*
@@ -56,6 +56,12 @@
 - ...
 *Post:*
 - Devuelve la suma de todos los precios de los alquileres de ese cliente.
+
+**Mensaje:** tieneNumero(int numeroAComparar)
+*Pre:*
+- ...
+*Post:*
+- Devuelve `true` si el numero recibido es igual al numero de cliente con el que fue creado, caso contrario `false`.
 
 ----------------------------------------------------------------
 # Alquiler
