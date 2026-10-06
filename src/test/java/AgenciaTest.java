@@ -78,4 +78,17 @@ public class AgenciaTest {
         });
     }
 
+    @Test
+    @DisplayName("Si se intenta alquilar para un numero de cliente no registrado, se lanza la excepcion.")
+    public void test06AlquilarParaClienteNoRegistradoLanzaClienteNoRegistradoException() {
+        // Arrange
+        Vehiculo unVehiculo = new Camion("LMRH-2827");
+        unaAgencia.registrarVehiculo(unVehiculo);
+
+        // Act & Assert
+        assertThrows(ClienteNoRegistradoException.class, () -> {
+            unaAgencia.alquilar(1, unVehiculo, 3);
+        });
+    }
+
 }

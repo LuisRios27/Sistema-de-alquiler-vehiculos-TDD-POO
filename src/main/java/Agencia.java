@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Agencia {
     private List<Vehiculo> vehiculos = new ArrayList<>();
+    private final List<Cliente> clientes = new ArrayList<>();
 
     private int cantidadClientes;
 
@@ -15,10 +16,27 @@ public class Agencia {
     }
 
     public int agregarCliente() {
-        
         cantidadClientes++;
+        clientes.add(new Cliente(cantidadClientes));
 
         return this.cantidadClientes;
+    }
+
+    /**
+     * Asigna un alquiler de un vehiculo, por una cantidad de dias, a un cliente.
+     * @exception ClienteNoRegistradoException es lanzada si el numero de cliente no esta registrado
+     */
+    public void alquilar(int numeroCliente, Vehiculo unVehiculo, int dias) {
+        this.buscarCliente(numeroCliente);
+    }
+
+    private Cliente buscarCliente(int numeroCliente) {
+        for (Cliente cliente : clientes) {
+            if (cliente.tieneNumero(numeroCliente)) {
+                return cliente;
+            }
+        }
+        throw new ClienteNoRegistradoException("El cliente " + numeroCliente + " no esta registrado.");
     }
 
     /**
