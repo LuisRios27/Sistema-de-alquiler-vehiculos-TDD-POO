@@ -19,6 +19,14 @@ public class Agencia {
         return precioTotalDeAlquileres;
     }
 
+    /**
+     * Devuelve la suma de los precios de todos los alquileres de un cliente.
+     * @exception ClienteNoRegistradoException es lanzada si el numero de cliente no esta registrado
+     */
+    public double precioTotalDelCliente(int numeroCliente) {
+        return this.buscarCliente(numeroCliente).precioTotalAlquileres();
+    }
+
     public int agregarCliente() {
         cantidadClientes++;
         clientes.add(new Cliente(cantidadClientes));

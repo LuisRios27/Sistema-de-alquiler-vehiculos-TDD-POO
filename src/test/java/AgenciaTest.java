@@ -138,4 +138,24 @@ public class AgenciaTest {
         });
     }
 
+    @Test
+    @DisplayName("El precio total de un cliente incluye solo sus alquileres, no los de otros clientes.")
+    public void test10PrecioTotalDeUnClienteIncluyeSoloSusAlquileres() {
+        // Arrange
+        Vehiculo unCamion = new Camion("LMRH-2827");
+        Vehiculo unMicrobus = new Microbus("TLCP-2809");
+        unaAgencia.registrarVehiculo(unCamion);
+        unaAgencia.registrarVehiculo(unMicrobus);
+        int primerCliente = unaAgencia.agregarCliente();
+        int segundoCliente = unaAgencia.agregarCliente();
+        unaAgencia.alquilar(primerCliente, unCamion, 3);
+        unaAgencia.alquilar(segundoCliente, unMicrobus, 3);
+
+        // Act
+        double precioTotalDelPrimerCliente = unaAgencia.precioTotalDelCliente(primerCliente);
+
+        // Assert
+        assertEquals(30000.0, precioTotalDelPrimerCliente);
+    }
+
 }

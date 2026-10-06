@@ -31,6 +31,12 @@
 *Post:*
 - Devuelve la suma de todos los alquileres de todos los clientes.
 
+**Mensaje:** precioTotalDelCliente(int numeroCliente)
+*Pre:*
+- numero de cliente debe estar registrado (ClienteNoRegistradoException)
+*Post:*
+- Devuelve la suma de los precios de todos los alquileres de ese cliente.
+
 **Mensaje:** estaRegistrado(Vehiculo vehiculo)
 *Pre:*
 - ...
