@@ -91,4 +91,19 @@ public class AgenciaTest {
         });
     }
 
+    @Test
+    @DisplayName("Si un cliente alquila un camion por 3 dias, el precio total de la agencia es 30000.0")
+    public void test07PrecioTotalDeAgenciaConUnAlquilerDeCamionEs30000() {
+        // Arrange
+        Vehiculo unCamion = new Camion("LMRH-2827");
+        unaAgencia.registrarVehiculo(unCamion);
+        int numeroDeCliente = unaAgencia.agregarCliente();
+
+        // Act
+        unaAgencia.alquilar(numeroDeCliente, unCamion, 3);
+
+        // Assert
+        assertEquals(30000.0, unaAgencia.precioTotal());
+    }
+
 }

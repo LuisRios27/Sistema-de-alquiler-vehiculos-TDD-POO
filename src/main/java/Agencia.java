@@ -12,7 +12,11 @@ public class Agencia {
     }
 
     public double precioTotal() {
-        return 0.0;
+        double precioTotalDeAlquileres = 0.0;
+        for (Cliente cliente : clientes) {
+            precioTotalDeAlquileres += cliente.precioTotalAlquileres();
+        }
+        return precioTotalDeAlquileres;
     }
 
     public int agregarCliente() {
@@ -27,7 +31,7 @@ public class Agencia {
      * @exception ClienteNoRegistradoException es lanzada si el numero de cliente no esta registrado
      */
     public void alquilar(int numeroCliente, Vehiculo unVehiculo, int dias) {
-        this.buscarCliente(numeroCliente);
+        this.buscarCliente(numeroCliente).alquila(unVehiculo, dias);
     }
 
     private Cliente buscarCliente(int numeroCliente) {
