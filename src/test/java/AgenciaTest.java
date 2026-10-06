@@ -106,4 +106,23 @@ public class AgenciaTest {
         assertEquals(30000.0, unaAgencia.precioTotal());
     }
 
+    @Test
+    @DisplayName("Si dos clientes alquilan un camion y un microbus por 3 dias, el precio total de la agencia es 35000.0")
+    public void test08PrecioTotalDeAgenciaConAlquileresDeDosClientesEs35000() {
+        // Arrange
+        Vehiculo unCamion = new Camion("LMRH-2827");
+        Vehiculo unMicrobus = new Microbus("TLCP-2809");
+        unaAgencia.registrarVehiculo(unCamion);
+        unaAgencia.registrarVehiculo(unMicrobus);
+        int primerCliente = unaAgencia.agregarCliente();
+        int segundoCliente = unaAgencia.agregarCliente();
+
+        // Act
+        unaAgencia.alquilar(primerCliente, unCamion, 3);
+        unaAgencia.alquilar(segundoCliente, unMicrobus, 3);
+
+        // Assert
+        assertEquals(35000.0, unaAgencia.precioTotal());
+    }
+
 }
