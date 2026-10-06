@@ -66,4 +66,14 @@ public class ClienteTest extends RuntimeException {
         unCliente.alquila(otroVehiculo, dias);
         assertEquals(60000.0, unCliente.precioTotalAlquileres());
     }
+
+    @Test
+    @DisplayName("Un cliente no alquila ningun vehiculo, el precio total de sus alquileres es 0.0")
+    public void test06ClienteNoAlquilaVehiculosPrecioTotalDeAlquileresDelCLienteEs0() {
+        // Arrange
+        Cliente unCliente = new Cliente(1);
+
+        // Act & Assert
+        assertEquals(0.0, unCliente.precioTotalAlquileres());
+    }
 }
