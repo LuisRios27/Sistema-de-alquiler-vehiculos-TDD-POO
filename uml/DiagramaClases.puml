@@ -1,40 +1,145 @@
 @startuml
+title Alquiler de Vehiculos - Diagrama de clases
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 40
+skinparam ranksep 60
+
+' ============================ DOMINIO ============================
+
 class Agencia {
+  - vehiculos: List<Vehiculo>
+  - clientes: List<Cliente>
+  - cantidadClientes: int
+  + Agencia()
+  + registrarVehiculo(unVehiculo: Vehiculo): void
+  + estaRegistrado(unVehiculo: Vehiculo): boolean
+  + agregarCliente(): int
+  + alquilar(numeroCliente: int, unVehiculo: Vehiculo, dias: int): void
+  + precioTotal(): double
+  + precioTotalDelCliente(numeroCliente: int): double
+  - buscarCliente(numeroCliente: int): Cliente
 }
+
 class Cliente {
+  - numero: int
+  - alquileres: List<Alquiler>
+  + Cliente(numero: int)
+  + alquila(unVehiculo: Vehiculo, dias: int): void
+  + precioTotalAlquileres(): double
+  + tieneNumero(numeroAComparar: int): boolean
 }
+
 class Alquiler {
+  - vehiculo: Vehiculo
+  - dias: int
+  + Alquiler(unVehiculo: Vehiculo, dias: int)
+  + precio(): double
 }
-class Vehiculo {
+
+abstract class Vehiculo {
+  - patente: String
+  # {static} COSTO_BASE: double = 500.0
+  + Vehiculo(patente: String)
+  + {abstract} precio(dias: int): double
+  + tieneMismaPatente(vehiculoAComparar: Vehiculo): boolean
 }
-class Camion {
-}
-class Furgoneta {
-}
-class Microbus {
-}
+
 class Coche {
+  - {static} FACTOR_BLINDAJE: double = 1.15
+  - estaBlindado: boolean
+  - plazas: int
+  + Coche(patente: String, plazas: int, unaCategoria: Categoria, estaBlindado: boolean)
+  + precio(dias: int): double
 }
+
+class Microbus {
+  - {static} MONTO_BASE_DIARIO: double = 1500.0
+  - {static} MONTO_EXTRA_FIJO: double = 500.0
+  + Microbus(patente: String)
+  + precio(dias: int): double
+}
+
+class Furgoneta {
+  - {static} PRECIO_POR_PMA: double = 300.0
+  - pma: int
+  + Furgoneta(patente: String, pma: int)
+  + precio(dias: int): double
+}
+
+class Camion {
+  - {static} COSTO_FIJO: double = 30000.0
+  + Camion(patente: String)
+  + precio(dias: int): double
+}
+
 interface Categoria <<protocol>> {
+  + precioPlazas(plazas: int): double
 }
+
 class Clasico {
+  - {static} PRECIO_POR_PLAZA: double = 100.0
+  + precioPlazas(cantidadPlazas: int): double
 }
+
 class Premium {
+  - {static} PRECIO_POR_PLAZA: double = 150.0
+  + precioPlazas(cantidadPlazas: int): double
 }
 
-Agencia "1" --> "*" Cliente
-Agencia "1" --> "*" Vehiculo
+' ========================== EXCEPCIONES ==========================
 
-Cliente "1" --> "*" Alquiler
-Alquiler "*" --> "1" Vehiculo
+package "Excepciones (sin chequear)" <<Rectangle>> {
+  class RuntimeException <<java.lang>>
+  class VehiculoYaRegistradoAnteriormenteException
+  class VehiculoNoRegistradoException
+  class ClienteNoRegistradoException
+  class NumeroDeClienteInvalidoException
+  class CantidadDiasInvalidaException
+  class CantidadPlazasInvalidaException
+  class PMAInvalidoException
+}
 
-Coche --|> Vehiculo
-Microbus --|> Vehiculo
-Furgoneta --|> Vehiculo
-Camion --|> Vehiculo 
+' ============================ RELACIONES ============================
 
-Coche "*" --> "1" Categoria
-Clasico ..|> Categoria
-Premium ..|> Categoria
+' Composicion: la Agencia crea y es duena de sus clientes; el Cliente crea sus alquileres
+Agencia "1" *-down-> "clientes *" Cliente
+Cliente "1" *-down-> "alquileres *" Alquiler
+
+' Agregacion: los vehiculos se crean afuera y la Agencia solo los registra
+Agencia "1" o-right-> "vehiculos *" Vehiculo
+
+' Asociacion: un alquiler es de un vehiculo; un coche tiene una categoria
+Alquiler "*" -right-> "1" Vehiculo
+Coche "*" -right-> "1 categoria" Categoria
+
+' Herencia (Es-Un)
+Vehiculo <|-down- Coche
+Vehiculo <|-down- Microbus
+Vehiculo <|-down- Furgoneta
+Vehiculo <|-down- Camion
+
+' Realizacion de interfaz
+Categoria <|.. Clasico
+Categoria <|.. Premium
+
+' Excepciones sin chequear
+VehiculoYaRegistradoAnteriormenteException --|> RuntimeException
+VehiculoNoRegistradoException --|> RuntimeException
+ClienteNoRegistradoException --|> RuntimeException
+NumeroDeClienteInvalidoException --|> RuntimeException
+CantidadDiasInvalidaException --|> RuntimeException
+CantidadPlazasInvalidaException --|> RuntimeException
+PMAInvalidoException --|> RuntimeException
+
+' Dependencias: quien lanza cada excepcion
+Agencia ..> VehiculoYaRegistradoAnteriormenteException : <<throws>>
+Agencia ..> VehiculoNoRegistradoException : <<throws>>
+Agencia ..> ClienteNoRegistradoException : <<throws>>
+Cliente ..> NumeroDeClienteInvalidoException : <<throws>>
+Alquiler ..> CantidadDiasInvalidaException : <<throws>>
+Coche ..> CantidadPlazasInvalidaException : <<throws>>
+Furgoneta ..> PMAInvalidoException : <<throws>>
 
 @enduml
