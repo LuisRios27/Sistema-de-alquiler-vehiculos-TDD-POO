@@ -7,6 +7,9 @@ public class Coche extends Vehiculo {
 
     public Coche(String patente, int plazas, Categoria unaCategoria, boolean estaBlindado) {
         super(patente);
+        if (plazas <= 0) {
+            throw new CantidadPlazasInvalidaException("Cantidad de plazas invalida: " + plazas);
+        }
         this.plazas = plazas;
         this.categoria = unaCategoria;
         this.estaBlindado = estaBlindado;

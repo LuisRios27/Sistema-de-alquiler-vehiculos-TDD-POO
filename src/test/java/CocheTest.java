@@ -47,4 +47,16 @@ public class CocheTest {
         // Act & Assert
         assertEquals(6250, unCoche.precio(5), 0.001);
     }
+
+    @Test
+    @DisplayName("Se lanza excepcion al crear un coche con 0 plazas.")
+    public void test05CrearCocheConCeroPlazasLanzaCantidadPlazasInvalidaException() {
+        // Arrange
+        Categoria clasico = new Clasico();
+
+        // Act & Assert
+        assertThrows(CantidadPlazasInvalidaException.class, () -> {
+            new Coche("LMRH-2827", 0, clasico, false);
+        });
+    }
 }

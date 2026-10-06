@@ -104,7 +104,7 @@
 
 **Mensaje (Constructor):** Coche(String patente, int plazas, Categoria categoria, boolean estaBlindado)
 *Pre:*
-- plazas > 0 (CantidadPlazasInvalidoException)
+- plazas > 0 (CantidadPlazasInvalidaException)
 *Post:*
 - Crea un coche con todos sus atributos
 
