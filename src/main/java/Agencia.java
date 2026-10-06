@@ -29,9 +29,14 @@ public class Agencia {
     /**
      * Asigna un alquiler de un vehiculo, por una cantidad de dias, a un cliente.
      * @exception ClienteNoRegistradoException es lanzada si el numero de cliente no esta registrado
+     * @exception VehiculoNoRegistradoException es lanzada si el vehiculo no esta registrado
      */
     public void alquilar(int numeroCliente, Vehiculo unVehiculo, int dias) {
-        this.buscarCliente(numeroCliente).alquila(unVehiculo, dias);
+        Cliente cliente = this.buscarCliente(numeroCliente);
+        if (!this.estaRegistrado(unVehiculo)) {
+            throw new VehiculoNoRegistradoException("El vehiculo no esta registrado.");
+        }
+        cliente.alquila(unVehiculo, dias);
     }
 
     private Cliente buscarCliente(int numeroCliente) {

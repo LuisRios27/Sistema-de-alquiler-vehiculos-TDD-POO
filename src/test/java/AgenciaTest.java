@@ -125,4 +125,17 @@ public class AgenciaTest {
         assertEquals(35000.0, unaAgencia.precioTotal());
     }
 
+    @Test
+    @DisplayName("Si se intenta alquilar un vehiculo no registrado, se lanza la excepcion.")
+    public void test09AlquilarVehiculoNoRegistradoLanzaVehiculoNoRegistradoException() {
+        // Arrange
+        Vehiculo vehiculoSinRegistrar = new Camion("LMRH-2827");
+        int numeroDeCliente = unaAgencia.agregarCliente();
+
+        // Act & Assert
+        assertThrows(VehiculoNoRegistradoException.class, () -> {
+            unaAgencia.alquilar(numeroDeCliente, vehiculoSinRegistrar, 3);
+        });
+    }
+
 }

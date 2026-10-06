@@ -21,6 +21,7 @@
 **Mensaje:** alquilar(int numeroCliente, Vehiculo vehiculo, int dias)
 *Pre:*
 - numero de cliente debe estar registrado (ClienteNoRegistradoException)
+- vehiculo debe estar registrado (VehiculoNoRegistradoException)
 *Post:*
 - El cliente tiene un alquiler más.
 
