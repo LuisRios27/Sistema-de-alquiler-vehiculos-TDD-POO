@@ -108,4 +108,18 @@ public class ClienteTest {
         // Act & Assert
         assertEquals(0.0, unCliente.precioTotalAlquileres());
     }
+
+    @Test
+    @DisplayName("Si un cliente intenta alquilar por 0 dias se lanza CantidadDiasInvalidaException y no se suma ningun alquiler")
+    public void test09ClienteAlquilaPor0DiasLanzaExcepcionYNoSumaAlquiler() {
+        // Arrange
+        Vehiculo unCamion = new Camion("LMRH-2827");
+        Cliente unCliente = new Cliente(1);
+
+        // Act & Assert
+        assertThrows(CantidadDiasInvalidaException.class, () -> {
+            unCliente.alquila(unCamion, 0);
+        });
+        assertEquals(0.0, unCliente.precioTotalAlquileres());
+    }
 }
