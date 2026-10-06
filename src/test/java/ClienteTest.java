@@ -84,8 +84,24 @@ public class ClienteTest {
     }
 
     @Test
+    @DisplayName("Un cliente alquila un Coche premium blindado de 5 plazas por 5 dias, el precio total de sus alquileres es 7187.5")
+    public void test07ClienteAlquilaCochePremiumBlindado5PlazasPor5DiasPrecioTotalDeAlquileresEs7187punto5() {
+        // Arrange
+        Categoria premium = new Premium();
+        int dias = 5;
+        Vehiculo unVehiculo = new Coche("LMRH-2827", 5, premium, true);
+        Cliente unCliente = new Cliente(1);
+
+        // Act
+        unCliente.alquila(unVehiculo, dias);
+
+        // Assert
+        assertEquals(7187.5, unCliente.precioTotalAlquileres(), 0.01);
+    }
+
+    @Test
     @DisplayName("Un cliente no alquila ningun vehiculo, el precio total de sus alquileres es 0.0")
-    public void test07ClienteNoAlquilaVehiculosPrecioTotalDeAlquileresDelClienteEs0() {
+    public void test08ClienteNoAlquilaVehiculosPrecioTotalDeAlquileresDelClienteEs0() {
         // Arrange
         Cliente unCliente = new Cliente(1);
 
