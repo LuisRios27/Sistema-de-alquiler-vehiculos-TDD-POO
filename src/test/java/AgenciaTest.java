@@ -158,4 +158,16 @@ public class AgenciaTest {
         assertEquals(30000.0, precioTotalDelPrimerCliente);
     }
 
+    @Test
+    @DisplayName("Si se pide el precio total de un cliente no registrado, se lanza la excepcion.")
+    public void test11PrecioTotalDeClienteNoRegistradoLanzaClienteNoRegistradoException() {
+        // Arrange
+        unaAgencia.agregarCliente();
+
+        // Act & Assert
+        assertThrows(ClienteNoRegistradoException.class, () -> {
+            unaAgencia.precioTotalDelCliente(2);
+        });
+    }
+
 }
