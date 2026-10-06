@@ -59,4 +59,16 @@ public class CocheTest {
             new Coche("LMRH-2827", 0, clasico, false);
         });
     }
+
+    @Test
+    @DisplayName("Se lanza excepcion al crear un coche con plazas negativas.")
+    public void test06CrearCocheConPlazasNegativasLanzaCantidadPlazasInvalidaException() {
+        // Arrange
+        Categoria premium = new Premium();
+
+        // Act & Assert
+        assertThrows(CantidadPlazasInvalidaException.class, () -> {
+            new Coche("LMRH-2827", -3, premium, true);
+        });
+    }
 }
